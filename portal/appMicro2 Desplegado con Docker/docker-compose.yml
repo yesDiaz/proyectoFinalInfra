@@ -1,0 +1,75 @@
+services:
+  microweb:
+    image: microweb
+    build: 
+      context: ./microWeb
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    links:
+      - microusuarios
+      - microproductos
+      - microordenes
+
+    volumes:
+      - .:/var/www/html/
+  
+  microusuarios:
+    image: microusuarios
+    build: 
+      context: ./microUsuarios
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    links:
+      - almacendb
+
+  microproductos:
+    image: microproductos
+    build: 
+      context: ./microProductos
+      dockerfile: Dockerfile
+    links:
+      - almacendb
+    ports:
+      - "3002:3002"
+
+  microordenes:
+    image: microordenes
+    build: 
+      context: ./microOrdenes
+      dockerfile: Dockerfile
+    links:
+      - almacendb
+      - microusuarios
+      - microproductos
+    ports:
+      - "3003:3003"
+    #deploy:
+    #  placement:
+    #    constraints:
+    #      - node.labels.role == portal
+
+  almacendb:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "32000:3306"
+    volumes:
+      - db_data2:/var/lib/mysql
+      - ./almacendb/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+volumes:
+  db_data2:
