@@ -23,10 +23,10 @@ Tenga en cuenta revisar la IP del servidorUbuntu para este ejercicio se utilizó
 
 Servicio | Url | Descripción
 ------------ | ------------ | -------------
-Portal | http://192.168.100.2:8050 | Portal
-microclientes | http://192.168.100.2:5081 | Servicio Microclientes
-micropeticiones | http://192.168.100.2:5083 | Servicio Micropeticiones
-microusuarios | http://192.168.100.2:5082 | Servicio Microusuarios
+Portal | http://192.168.100.2:80 | Portal
+microclientes | http://192.168.100.2:3001 | Servicio Microclientes
+micropeticiones | http://192.168.100.2:3003 | Servicio Micropeticiones
+microusuarios | http://192.168.100.2:3002 | Servicio Microusuarios
 Balanceadorw | http://192.168.100.2:5080/ | Portal
 Balanceadorw | http://192.168.100.2:5080/haproxy?stats | Estadisticas del Balanceador del Portal
 Balanceadors1 | http://192.168.100.2:5081/ | Servicio Clientes
