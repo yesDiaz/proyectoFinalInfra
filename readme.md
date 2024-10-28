@@ -95,6 +95,18 @@ Balanceadors2 | 5082 | microusuarios | 3002
 
 El servicio insertadditionaldata, se utiliza para cargar la información inicial utilizando el archivo .cvs. Extrae los clientes y los usuarios y los crea en la base de datos de Peticiones en MySQL mediante codigo Python
 
+### Ejecutar el docker compose
+```sh
+# Ejecutar el Docker componse
+docker compose up -d 
+
+# Verificar que estén corriendo los contenedores 
+docker compose ps 
+
+# Detener los contenedores
+docker compose down
+```
+
 ### Procesos de escalamiento con Docker Swarn
 
 Asegurece de tener configurado el cluster antes de ejecutar los siguientes comandos.
@@ -123,6 +135,6 @@ docker stack rm projectofinal
 
 ### Pruebas de desempeño
 
-El archivo de Jmeter Pruebas de Carga.jmx tiene un ejemplo configurado el cual con el solo inicio del stack no funciona. Se escala el servicio de microusaurios a 2 para que ya no arroje errores.
+El archivo de Jmeter Pruebas de Carga.jmx tiene un ejemplo configurado el cual con el solo inicio del stack no funciona. Se escala el servicio de microusuarios a 2 para que ya no arroje errores.
 
 
