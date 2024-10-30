@@ -1,0 +1,15 @@
+FROM python:3.12
+RUN apt-get update && apt-get install -y \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /peticionesdir
+COPY dataFrameProyecto.csv dataFrameProyecto.csv
+COPY insertarClientes.py insertarClientes.py
+COPY requirements.txt requirements.txt
+#COPY run.sh /peticionesdir/run.sh
+#ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+#RUN chmod +x /peticionesdir/run.sh
+RUN pip install --no-cache-dir -r requirements.txt
+RUN chmod +x insertarClientes.py
+#CMD ["./run.sh"]
+CMD ["python", "insertarClientes.py"]

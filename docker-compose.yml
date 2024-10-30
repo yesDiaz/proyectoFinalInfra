@@ -129,11 +129,19 @@ services:
     #    constraints:
     #      - node.labels.role == serverstorage
   
-  insertadditionaldata:
-    image: proyectofinal-insertadditionaldata
+  insertaclientes:
+    image: proyectofinal-insertaclientes
     build: 
       context: ./peticionesdb/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfileclientes
+    links:
+      - peticionesdb
+
+  insertausuarios:
+    image: proyectofinal-insertausuarios
+    build: 
+      context: ./peticionesdb/
+      dockerfile: Dockerfileusuarios
     links:
       - peticionesdb
 

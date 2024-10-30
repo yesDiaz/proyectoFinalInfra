@@ -1,0 +1,11 @@
+FROM python:3.12
+RUN apt-get update && apt-get install -y \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /peticionesdir
+COPY dataFrameProyecto.csv dataFrameProyecto.csv
+COPY procesar_e_insertar_usuarios.py procesar_e_insertar_usuarios.py
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+RUN chmod +x procesar_e_insertar_usuarios.py
+CMD ["python", "procesar_e_insertar_usuarios.py"]
